@@ -16,6 +16,10 @@ public class Project3 {
      */
     public static void main(String[] args) { //test here
         // TODO code application logic here
+        stack st=new stack();
+        st.push(1);
+        st.push("vhghg");
+        System.out.println(st.pop());
     }
     
 }
