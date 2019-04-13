@@ -19,7 +19,7 @@ public class stack {
     }
     
     public void push(Object x){
-        if(count==500){
+        if(count==500-1){
             System.out.println("Can't push,the stack is full");
         }else{
             stack[++count]=x;

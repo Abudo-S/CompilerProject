@@ -11,8 +11,11 @@ package project3;
  */
 //No built_in methods
 public class scanner {
-    private static String text;
-    public scanner(String text){
-        scanner.text=text;
+    private static char[] text;
+    private token tok;
+    
+    public scanner(char[] text){
+       scanner.text=text;
+       tok=new token();
     }
 }
