@@ -19,7 +19,17 @@ public class Project3 {
         stack st=new stack();
         st.push(1);
         st.push("vhghg");
-        System.out.println(st.pop());
+       // System.out.println(st.pop());
+        char[]x={'1','1','5'};
+        scanner sc=new scanner(x);
+        //System.out.println(scanner.text);
+        token tok=new token();
+        tok.add_token("fs");
+        tok.add_token("sd");
+        tok.add_token("sd");
+        tok.add_token("sd");
+        System.out.println(tok.get_token());
+        System.out.println(tok.size());
     }
     
 }

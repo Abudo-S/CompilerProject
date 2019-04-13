@@ -11,11 +11,20 @@ package project3;
  */
 //No built_in methods
 public class scanner {
+<<<<<<< HEAD
     private static char[] str;
     public static int index;
     
     public scanner(char[] str){
         scanner.setStr(str);
+=======
+    private static char[] text;
+    private token tok;
+    
+    public scanner(char[] text){
+       scanner.text=text;
+       tok=new token();
+>>>>>>> b42ed9d77ea6c365d1a99ada0d966cc925ab6ef0
     }
     
     public static char[] getStr() {
