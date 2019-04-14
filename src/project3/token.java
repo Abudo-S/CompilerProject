@@ -11,13 +11,13 @@ package project3;
  */
 public class token {
     private static String[] tokens;
-    int front;
-    int count;
+    private static int front;
+    private static int count;
     
     public token(){
         tokens=new String[500];
-        this.front=0;
-        this.count=-1;
+        front=0;
+        count=-1;
     }
     
     public void add_token(String token){
@@ -29,7 +29,7 @@ public class token {
     }
     
     public String get_token(){
-         if(front==count+1){
+        if(count==-1){
             System.out.println("Can't get a token");
             return null;
         }else{
@@ -40,4 +40,8 @@ public class token {
     public int size(){
         return count+1;
     }
+    
+    /*public String peek(){
+        return tokens[this.count];
+    }*/
 }

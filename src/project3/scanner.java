@@ -5,6 +5,8 @@
  */
 package project3;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Dell
@@ -18,4 +20,7 @@ public class scanner {
        scanner.text=text;
        tok=new token();
     }
+        
+    
+    
 }
