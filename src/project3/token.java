@@ -11,13 +11,13 @@ package project3;
  */
 public class token {
     private static String[] tokens;
-    private int count;
-    int front;
+    private static int count;
+    private static int front;
     
     public token(){
         tokens = new String[500];
-        this.front = 0;
-        this.count =-1;
+        front = 0;
+        count =-1;
     }
     
     public void add_token(String token){
