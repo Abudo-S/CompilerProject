@@ -11,7 +11,7 @@ package project3;
  */
 public class stack {
     Object[] stack;
-    int count;
+    private int count;
     
     public stack(){
         this.stack=new Object[500];

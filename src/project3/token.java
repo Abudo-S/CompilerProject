@@ -29,7 +29,7 @@ public class token {
     }
     
     public String get_token(){
-         if(front==count+1){
+        if(count==-1){
             System.out.println("Can't get a token");
             return null;
         }else{
@@ -40,4 +40,8 @@ public class token {
     public int size(){
         return count+1;
     }
+    
+    /*public String peek(){
+        return tokens[this.count];
+    }*/
 }
