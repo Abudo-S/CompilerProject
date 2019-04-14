@@ -11,19 +11,19 @@ package project3;
  */
 public class token {
     private static String[] tokens;
+    private int count;
     int front;
-    int count;
     
     public token(){
-        tokens=new String[500];
-        this.front=0;
-        this.count=-1;
+        tokens = new String[500];
+        this.front = 0;
+        this.count =-1;
     }
     
     public void add_token(String token){
-        if(count==500-1){
+        if(count == 499) {
             System.out.println("Can't push a token");
-        }else{
+        } else {
             tokens[++count]=token;
         }
     }
