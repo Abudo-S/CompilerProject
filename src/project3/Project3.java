@@ -26,6 +26,7 @@ public class Project3 {
         scanner sc=new scanner(x);
         //System.out.println(scanner.text);
         token tok=new token(); 
+        chars op=new chars();
 //        System.out.println(sc.match_expression(x,0));
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
@@ -38,7 +39,7 @@ public class Project3 {
          tok.add_token("tok4");
          System.out.println(tok.get_token());
          System.out.println(tok.get_token());
-
+         //System.out.println(Arrays.toString(op.make_char_to_space(x)));
        
     }
     

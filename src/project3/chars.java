@@ -40,7 +40,12 @@ public class chars {
         return ch;
     }
     
-    /*public char[] make_char_to_spaceORnewline(char[] ch){
-        
-    }*/
+    public char[] make_char_to_space(char[] ch){
+        char[] new_ch=new char[this.look_for_length(ch)];
+        for(int i=0;i<new_ch.length;i++){
+            new_ch[i]=ch[i];
+        }
+        new_ch[new_ch.length-1]=' ';
+        return new_ch;
+    }
 }

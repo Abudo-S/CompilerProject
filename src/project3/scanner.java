@@ -336,9 +336,9 @@ public class scanner {
         int counter=0;
         for(int i=0;i<text.length;i++){
             if(text[i]=='\n'||text[i]==' '){
-                word[counter+1]=' ';
-               // match(word);
+                match(operation.make_char_to_space(word));
                 counter=0;
+                word=new char[50];
             }
             word[counter]=text[i];
         }
