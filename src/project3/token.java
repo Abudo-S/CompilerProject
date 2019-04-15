@@ -41,6 +41,13 @@ public class token {
         return count+1;
     }
     
+    public void push_front(String token){
+          if(front==0){
+                System.out.println("Can't push a token at the front");
+          } else {
+              tokens[--front]=token;
+          }
+    }
     /*public String peek(){
         return tokens[this.count];
     }*/

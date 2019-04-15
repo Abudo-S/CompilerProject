@@ -11,6 +11,12 @@ package project3;
  */
 //No built_in methods
 public class parser {
+    private token tok;
+    
+    public parser(){
+        tok=new token();
+    }
+    
     /*public void match_stmts(char[] ch){
         
          for(int i=0;i<ch.length;i++){

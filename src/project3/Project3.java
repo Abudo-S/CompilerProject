@@ -30,6 +30,14 @@ public class Project3 {
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
+        tok.add_token("tok1");
+        tok.add_token("tok2");
+        System.out.println(tok.get_token());
+        System.out.println(tok.get_token());
+        tok.push_front("tok3");
+         tok.add_token("tok4");
+         System.out.println(tok.get_token());
+         System.out.println(tok.get_token());
 
        
     }

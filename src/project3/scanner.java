@@ -5,7 +5,6 @@
  */
 package project3;
 
-import java.util.Arrays;
 
 /**
  *
@@ -13,289 +12,292 @@ import java.util.Arrays;
  */
 //No built_in methods
 public class scanner {
-    private static char[] str;
+    private static char[] text;
     private token tok;
+    private chars operation;
     
-    public scanner(char[] str){
-       scanner.str = str;
-       //setTok(new token());
+    public scanner(char[] text){
+       scanner.text = text;
        this.tok=new token();
+       operation=new chars();
     }
     
-    public static char[] getStr() {
-		return str;
-	}
-	public static void setStr(char[] str) {
-		scanner.str = str;
-	}
+       public static char[] gettext() {
+               return text;
+       }
 
-	public token getTok() {
-		return tok;
-	}
-	public void setTok(token tok) {
-		this.tok = tok;
-	}
+       public token getTok() {
+               return tok;
+       }
 
 	public boolean match(char[] str) {
-		int index = 0;
-		
-		switch(str[index]) {
-		case '@':
-		case '^':
-			if(str[index++] == ' ')
-				tok.add_token("Stat Symbol");
-			break;
-		
-		case '$':
-		case '#':
-			if(str[index++] == ' ')
-				tok.add_token("End Symbol");
-			break;
-			
-		case 'T':
-			if(str[index++] == 'y')
-				if(str[index++] == 'p')
-					if(str[index++] == 'e')
-						if(str[index++] == ' ')
-							tok.add_token("Class");
-			break;
-		
-		case 'I':
-			if(str[index++] == 'n') {
-				if(str[index++] == 'f')
-					if(str[index++] == 'e')
-						if(str[index++] == 'r')
-							if(str[index++] == ' ')
-								tok.add_token("Inheritance");
-				
-			} else if(str[index++] == 'f') {
-				if(str[index++] == ' ')
-					tok.add_token("Condition");
-				
-			} else if(str[index++] == 'p') {
-				if(str[index++] == 'o')
-					if(str[index++] == 'k')
-						if(str[index++] == ' ') {
-							tok.add_token("Integer");
-							
-						} else if(str[index++] == 'f') {
-							if(str[index++] == ' ')
-								tok.add_token("Float");
-						}
-			}
-			break;
-			
-		case 'S':
-			if(str[index++] == 'e') {
-				if(str[index++] == 'q')
-					if(str[index++] == 'u')
-						if(str[index++] == 'e')
-							if(str[index++] == 'n')
-								if(str[index++] == 'c')
-									if(str[index++] == 'e')
-										if(str[index++] == ' ')
-											tok.add_token("String");
-				
-			} else if(str[index++] == 'r') {
-				if(str[index++] == 'a')
-					if(str[index++] == 'p')
-						if(str[index++] == ' ')
-							tok.add_token("Struct");
-				
-			} else if(str[index++] == 'c') {
-				if(str[index++] == 'a')
-					if(str[index++] == 'n')
-						if(str[index++] == ' ')
-							tok.add_token("Switch");
-				
-			} else if(str[index++] == 'i') {
-				if(str[index++] == 'p')
-					if(str[index++] == 'o')
-						if(str[index++] == 'k')
-							if(str[index++] == ' ') {
-								tok.add_token("SInteger");
-								
-							} else if(str[index++] == 'f') {
-								if(str[index++] == ' ')
-									tok.add_token("SFloat");
-							}
-			}
-			break;
-			
-		case 'C':
-			if(str[index++] == 'r') {
-				if(str[index++] == 'a')
-					if(str[index++] == 'f')
-						if(str[index++] == ' ')
-							tok.add_token("Character");
-				
-			} else if(str[index++] == 'o') {
-				if(str[index++] == 'n')
-					if(str[index++] == 'd')
-						if(str[index++] == 'i')
-							if(str[index++] == 't')
-								if(str[index++] == 'i')
-									if(str[index++] == 'o')
-										if(str[index++] == 'n')
-											if(str[index++] == 'o')
-												if(str[index++] == 'f')
-													if(str[index++] == ' ')
-														tok.add_token("Switch");
-			}
-			break;
-			
-		case 'V':
-			if(str[index++] == 'a')
-				if(str[index++] == 'l')
-					if(str[index++] == 'u')
-						if(str[index++] == 'e')
-							if(str[index++] == 'l')
-								if(str[index++] == 'e')
-									if(str[index++] == 's')
-										if(str[index++] == 's')
-											if(str[index++] == ' ')
-												tok.add_token("Void");
-			break;
-			
-		case 'R':
-			if(str[index++] == 'a') {
-				if(str[index++] == 't')
-					if(str[index++] == 'i')
-						if(str[index++] == 'o')
-							if(str[index++] == 'n')
-								if(str[index++] == 'a')
-									if(str[index++] == 'l')
-										if(str[index++] == ' ')
-											tok.add_token("Boolean");
-				
-			} else if(str[index++] == 'e') {
-				if(str[index++] == 's'){
-					if(str[index++] == 'p')
-						if(str[index++] == 'o')
-							if(str[index++] == 'n')
-								if(str[index++] == 'd')
-									if(str[index++] == 'w')
-										if(str[index++] == 'i')
-											if(str[index++] == 't')
-												if(str[index++] == 'h')
-													if(str[index++] == ' ')
-														tok.add_token("Return");
-                                } else if(str[index++]=='q'){
-                                         if(str[index++]=='u')
-                                                if(str[index++]=='i')
-                                                        if(str[index++]=='r')
-                                                                if(str[index++]=='e')
-                                                                       tok.add_token("Inclusion");
-                                }
-                        }
-                        break;
-			
-		case 'E':
-			if(str[index++] == 'l') {
-				if(str[index++] == 's')
-					if(str[index++] == 'e')
-						if(str[index++] == ' ')
-							tok.add_token("Condition");
-				
-			} else if(str[index++] == 'n') {
-				if(str[index++] == 'd')
-					if(str[index++] == 't')
-						if(str[index++] == 'h')
-							if(str[index++] == 'i')
-								if(str[index++] == 's')
-									if(str[index++] == ' ')
-										tok.add_token("Break");
-			}
-			break;
-                case 'H':
-                        if(str[index++]=='o'){
-                                if(str[index++]=='w')
-                                        if(str[index++]=='e')
-                                                if(str[index++]=='v')
-                                                        if(str[index++]=='e')
-                                                                if(str[index++]=='r')
-                                                                        tok.add_token("Loop");
-                        }
-                        break;
-                case 'W':
-                        if(str[index++]=='h')
-                                if(str[index++]=='e')
-                                        if(str[index++]=='n')
-                                                tok.add_token("Loop");
-                        break;
-                case '+':
-                case '/':
-                case '*':
-                        tok.add_token("Arithmetic Operation"); 
-                        break;
-                case '-':
-                        if(str[index+1]=='>'){
-                             index++;
-                             tok.add_token("Arithmetic Operation");
-                        }else
-                             tok.add_token("Access Operator");
-                        break;
-                case '&':
-                        if(str[index++]=='&')
-                                tok.add_token("Logic operators");
-                        break;
-                case '|':
-                        if(str[index++]=='|')
-                                tok.add_token("Logic operators"); 
-                        break;
-                case '~':
-                        tok.add_token("Logic operators");
-                        break;
-                case '=':
-                        if(str[index+1]=='='){
-                            index++;
-                            tok.add_token("relational operators");
-                        }else{
-                            tok.add_token("Assignment operator");
-                        }
-                        break;
-                case '<':  
-                        if(str[index+1]=='=')
-                             index++;
-                        tok.add_token("relational operators");
-                        break;
-                case '>':     
-                        if(str[index+1]=='=')
-                             index++; 
-                        tok.add_token("relational operators");
-                        break;
-                case '!':
-                        if(str[index++]=='=')
+           try{
+                for(int index=0;index<str.length;index++){    
+                    switch(str[index]) {
+                    case '@':
+                    case '^':
+                            if(str[index++] == ' ')
+                                    tok.add_token("Stat Symbol");
+                            break;
+
+                    case '$':
+                    case '#':
+                            if(str[index++] == ' ')
+                                    tok.add_token("End Symbol");
+                            break;
+
+                    case 'T':
+                            if(str[index++] == 'y')
+                                    if(str[index++] == 'p')
+                                            if(str[index++] == 'e')
+                                                    if(str[index++] == ' ')
+                                                            tok.add_token("Class");
+                            break;
+
+                    case 'I':
+                            if(str[index++] == 'n') {
+                                    if(str[index++] == 'f')
+                                            if(str[index++] == 'e')
+                                                    if(str[index++] == 'r')
+                                                            if(str[index++] == ' ')
+                                                                    tok.add_token("Inheritance");
+
+                            } else if(str[index++] == 'f') {
+                                    if(str[index++] == ' ')
+                                            tok.add_token("Condition");
+
+                            } else if(str[index++] == 'p') {
+                                    if(str[index++] == 'o')
+                                            if(str[index++] == 'k')
+                                                    if(str[index++] == ' ') {
+                                                            tok.add_token("Integer");
+
+                                                    } else if(str[index++] == 'f') {
+                                                            if(str[index++] == ' ')
+                                                                    tok.add_token("Float");
+                                                    }
+                            }
+                            break;
+
+                    case 'S':
+                            if(str[index++] == 'e') {
+                                    if(str[index++] == 'q')
+                                            if(str[index++] == 'u')
+                                                    if(str[index++] == 'e')
+                                                            if(str[index++] == 'n')
+                                                                    if(str[index++] == 'c')
+                                                                            if(str[index++] == 'e')
+                                                                                    if(str[index++] == ' ')
+                                                                                            tok.add_token("String");
+
+                            } else if(str[index++] == 'r') {
+                                    if(str[index++] == 'a')
+                                            if(str[index++] == 'p')
+                                                    if(str[index++] == ' ')
+                                                            tok.add_token("Struct");
+
+                            } else if(str[index++] == 'c') {
+                                    if(str[index++] == 'a')
+                                            if(str[index++] == 'n')
+                                                    if(str[index++] == ' ')
+                                                            tok.add_token("Switch");
+
+                            } else if(str[index++] == 'i') {
+                                    if(str[index++] == 'p')
+                                            if(str[index++] == 'o')
+                                                    if(str[index++] == 'k')
+                                                            if(str[index++] == ' ') {
+                                                                    tok.add_token("SInteger");
+
+                                                            } else if(str[index++] == 'f') {
+                                                                    if(str[index++] == ' ')
+                                                                            tok.add_token("SFloat");
+                                                            }
+                            }
+                            break;
+
+                    case 'C':
+                            if(str[index++] == 'r') {
+                                    if(str[index++] == 'a')
+                                            if(str[index++] == 'f')
+                                                    if(str[index++] == ' ')
+                                                            tok.add_token("Character");
+
+                            } else if(str[index++] == 'o') {
+                                    if(str[index++] == 'n')
+                                            if(str[index++] == 'd')
+                                                    if(str[index++] == 'i')
+                                                            if(str[index++] == 't')
+                                                                    if(str[index++] == 'i')
+                                                                            if(str[index++] == 'o')
+                                                                                    if(str[index++] == 'n')
+                                                                                            if(str[index++] == 'o')
+                                                                                                    if(str[index++] == 'f')
+                                                                                                            if(str[index++] == ' ')
+                                                                                                                    tok.add_token("Switch");
+                            }
+                            break;
+
+                    case 'V':
+                            if(str[index++] == 'a')
+                                    if(str[index++] == 'l')
+                                            if(str[index++] == 'u')
+                                                    if(str[index++] == 'e')
+                                                            if(str[index++] == 'l')
+                                                                    if(str[index++] == 'e')
+                                                                            if(str[index++] == 's')
+                                                                                    if(str[index++] == 's')
+                                                                                            if(str[index++] == ' ')
+                                                                                                    tok.add_token("Void");
+                            break;
+
+                    case 'R':
+                            if(str[index++] == 'a') {
+                                    if(str[index++] == 't')
+                                            if(str[index++] == 'i')
+                                                    if(str[index++] == 'o')
+                                                            if(str[index++] == 'n')
+                                                                    if(str[index++] == 'a')
+                                                                            if(str[index++] == 'l')
+                                                                                    if(str[index++] == ' ')
+                                                                                            tok.add_token("Boolean");
+
+                            } else if(str[index++] == 'e') {
+                                    if(str[index++] == 's'){
+                                            if(str[index++] == 'p')
+                                                    if(str[index++] == 'o')
+                                                            if(str[index++] == 'n')
+                                                                    if(str[index++] == 'd')
+                                                                            if(str[index++] == 'w')
+                                                                                    if(str[index++] == 'i')
+                                                                                            if(str[index++] == 't')
+                                                                                                    if(str[index++] == 'h')
+                                                                                                            if(str[index++] == ' ')
+                                                                                                                    tok.add_token("Return");
+                                    } else if(str[index++]=='q'){
+                                             if(str[index++]=='u')
+                                                    if(str[index++]=='i')
+                                                            if(str[index++]=='r')
+                                                                    if(str[index++]=='e')
+                                                                        if(str[index++] == ' ')
+                                                                                tok.add_token("Inclusion");
+                                    }
+                            }
+                            break;
+
+                    case 'E':
+                            if(str[index++] == 'l') {
+                                    if(str[index++] == 's')
+                                            if(str[index++] == 'e')
+                                                    if(str[index++] == ' ')
+                                                            tok.add_token("Condition");
+
+                            } else if(str[index++] == 'n') {
+                                    if(str[index++] == 'd')
+                                            if(str[index++] == 't')
+                                                    if(str[index++] == 'h')
+                                                            if(str[index++] == 'i')
+                                                                    if(str[index++] == 's')
+                                                                            if(str[index++] == ' ')
+                                                                                    tok.add_token("Break");
+                            }
+                            break;
+                    case 'H':
+                            if(str[index++]=='o'){
+                                    if(str[index++]=='w')
+                                            if(str[index++]=='e')
+                                                    if(str[index++]=='v')
+                                                            if(str[index++]=='e')
+                                                                    if(str[index++]=='r')
+                                                                            tok.add_token("Loop");
+                            }
+                            break;
+                    case 'W':
+                            if(str[index++]=='h')
+                                    if(str[index++]=='e')
+                                            if(str[index++]=='n')
+                                                    tok.add_token("Loop");
+                            break;
+                    case '+':
+                    case '/':
+                    case '*':
+                            tok.add_token("Arithmetic Operation"); 
+                            break;
+                    case '-':
+                            if(str[index+1]=='>'){
+                                 index++;
+                                 tok.add_token("Arithmetic Operation");
+                            }else
+                                 tok.add_token("Access Operator");
+                            break;
+                    case '&':
+                            if(str[index++]=='&')
+                                    tok.add_token("Logic operators");
+                            break;
+                    case '|':
+                            if(str[index++]=='|')
+                                    tok.add_token("Logic operators"); 
+                            break;
+                    case '~':
+                            tok.add_token("Logic operators");
+                            break;
+                    case '=':
+                            if(str[index+1]=='='){
+                                index++;
                                 tok.add_token("relational operators");
-                        break;
-                case '{':
-                case '}':
-                case '[':
-                case ']':
-                        tok.add_token("Braces");
-                        break;
-                case '"':
-                case ',':
-                case '\'':    
-                        tok.add_token("Quotation Mark");
-                        break;
-                case '(':
-                        tok.add_token("(");
-                        break;
-                case ')':
-                        tok.add_token(")");
-                        break;
-                        
-		default:
-                        int i=match_number(str, index);
-                        if(i==index){
-                            i=match_ID(str,index);
-                        }
-                        if(i!=index){
-                            return true;
-                        }
-		        return false;
-		}
+                            }else{
+                                index++;
+                                tok.add_token("Assignment operator");
+                            }
+                            break;
+                    case '<':  
+                            if(str[index+1]=='=')
+                                 index++;
+                            tok.add_token("relational operators");
+                            break;
+                    case '>':     
+                            if(str[index+1]=='=')
+                                 index++; 
+                            tok.add_token("relational operators");
+                            break;
+                    case '!':
+                            if(str[index+1]=='='){
+                                    index++;
+                                    tok.add_token("relational operators");
+                            }
+                            break;
+                    case '{':
+                    case '}':
+                    case '[':
+                    case ']':
+                            tok.add_token("Braces");
+                            break;
+                    case '"':
+                    case ',':
+                    case '\'':    
+                            tok.add_token("Quotation Mark");
+                            break;
+                    case '(':
+                            tok.add_token("(");
+                            break;
+                    case ')':
+                            tok.add_token(")");
+                            break;
+
+                    default:
+                            int i=match_number(str, index);
+                            if(i==index){
+                                i=match_ID(str,index);
+                            }
+                            if(i!=index){
+                                return true;
+                            }
+                            return false;
+                    }
+                }
+           }catch(Exception e){
+               return false;
+           }
 		
 		return true;
 	}
@@ -328,4 +330,19 @@ public class scanner {
         }
         return index;
     }
+     
+    public void apply_matching(){
+        char[] word=new char[50];
+        int counter=0;
+        for(int i=0;i<text.length;i++){
+            if(text[i]=='\n'||text[i]==' '){
+                word[counter+1]=' ';
+               // match(word);
+                counter=0;
+            }
+            word[counter]=text[i];
+        }
+    }
+    
+   
 }
