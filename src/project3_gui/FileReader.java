@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project3;
+package project3_gui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.util.Scanner;
  *
  * @author Dell
  */
+<<<<<<< HEAD:src/project3/FileReader.java
 public class FileReader {  
 	private String Text;
 	
@@ -34,5 +35,21 @@ public class FileReader {
     	
     	
     	sc.close();
+=======
+public class FileReader {  //assigned to karim
+    
+    private static char[] text;
+    
+    public FileReader(){
+        
+    }
+    
+    public void read(){
+         //fill string text
+    }
+    
+    public char[] get_text(){
+        return this.text;
+>>>>>>> cdb77b73f578e6ba3239697ef3265791a3d5fb4d:src/project3_gui/FileReader.java
     }
 }

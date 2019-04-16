@@ -38,8 +38,9 @@ public class Project3 {
         tok.push_front("tok3");
          tok.add_token("tok4");
          System.out.println(tok.get_token());
-         System.out.println(tok.get_token());
-         //System.out.println(Arrays.toString(op.make_char_to_space(x)));
+         //System.out.println(tok.get_token());
+         System.out.println(tok.peek());
+         System.out.println(Arrays.toString(op.make_char_to_space(x)));
        
     }
     
