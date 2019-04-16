@@ -22,7 +22,7 @@ public class Project3 {
         st.push(1);
         st.push("vhghg");
        // System.out.println(st.pop());
-       char[]x={'x',' ','*',' ','y',' ','+',' ','t'};
+       char[]x={'@',' ','T','y','p','e',' ','h',' ','I','p','o','k',' '};
         scanner sc=new scanner(x);
         //System.out.println(scanner.text);
         token tok=new token(); 
@@ -31,17 +31,9 @@ public class Project3 {
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
-        tok.add_token("tok1");
-        tok.add_token("tok2");
-        System.out.println(tok.get_token());
-        System.out.println(tok.get_token());
-        tok.push_front("tok3");
-         tok.add_token("tok4");
-         System.out.println(tok.get_token());
-         //System.out.println(tok.get_token());
-         System.out.println(tok.peek());
-         System.out.println(Arrays.toString(op.make_char_to_space(x)));
-       
+
+        System.out.println(Arrays.toString(sc.apply_matching()));
+        
     }
     
 }

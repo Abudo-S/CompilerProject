@@ -5,6 +5,8 @@
  */
 package project3;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Dell
@@ -14,7 +16,7 @@ public class chars {
      public int look_for_length(char[] ch){
         int counter=0;
         for(int i=0;i<ch.length;i++){
-            if(ch[i]==' '||ch[i]=='\n'){
+            if(ch[i]==' '){
                 break;
             }
             counter++;
