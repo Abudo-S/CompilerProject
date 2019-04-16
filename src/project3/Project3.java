@@ -22,16 +22,18 @@ public class Project3 {
         st.push(1);
         st.push("vhghg");
        // System.out.println(st.pop());
-       char[]x={'x',' ','*',' ','y',' ','+',' ','t'};
+       char[]x={'@',' ','T','y','p','e',' ','h',' ','I','p','o','k',' '};
         scanner sc=new scanner(x);
         //System.out.println(scanner.text);
         token tok=new token(); 
+        chars op=new chars();
 //        System.out.println(sc.match_expression(x,0));
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
 //         System.out.println(tok.get_token());
 
-       
+        System.out.println(Arrays.toString(sc.apply_matching()));
+        
     }
     
 }

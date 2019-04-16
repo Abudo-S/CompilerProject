@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project3;
+package project3_gui;
 
 /**
  *
@@ -11,7 +11,7 @@ package project3;
  */
 public class FileReader {  //assigned to karim
     
-    private static String text;
+    private static char[] text;
     
     public FileReader(){
         
@@ -21,7 +21,7 @@ public class FileReader {  //assigned to karim
          //fill string text
     }
     
-    public String get_text(){
-        return "";
+    public char[] get_text(){
+        return this.text;
     }
 }

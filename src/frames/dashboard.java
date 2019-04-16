@@ -35,9 +35,11 @@ public class dashboard extends javax.swing.JFrame {
         compile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(50, 63, 65));
 
         browse.setText("Browse");
 
+        editor.setBackground(new java.awt.Color(125, 140, 130));
         editor.setColumns(20);
         editor.setRows(5);
         jScrollPane1.setViewportView(editor);
