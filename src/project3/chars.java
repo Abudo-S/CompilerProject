@@ -10,6 +10,7 @@ package project3;
  * @author Dell
  */
 public class chars {
+    
      public int look_for_length(char[] ch){
         int counter=0;
         for(int i=0;i<ch.length;i++){
@@ -47,5 +48,13 @@ public class chars {
         }
         new_ch[new_ch.length-1]=' ';
         return new_ch;
+    }
+    
+        public String convert_to_String(char[] ch){
+        String str="";
+        for(int i=0;i<ch.length;i++){
+            str=str+ch[i];
+        }
+        return str;
     }
 }

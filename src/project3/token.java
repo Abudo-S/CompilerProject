@@ -48,7 +48,10 @@ public class token {
               tokens[--front]=token;
           }
     }
-    /*public String peek(){
-        return tokens[this.count];
-    }*/
+    public String peek(){
+        if(count==-1){
+            System.out.println("Can't peek");
+        }
+        return tokens[front];
+    }
 }
