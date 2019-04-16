@@ -5,12 +5,9 @@
  */
 package project3;
 
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
 
 
->>>>>>> 70df5a2bdec259bd434f4cbd1eeb8eb611d21213
 /**
  *
  * @author Dell
