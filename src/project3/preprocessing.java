@@ -10,6 +10,16 @@ package project3;
  * @author Dell
  */
 //No built_in methods
-public class preprocessing { //assigned to karim
-    
+
+/*
+ * array of char[] from dashboard
+ * 
+ * */
+public class preprocessing { 
+	public preprocessing(){
+		
+	}
+	
+	
+	
 }

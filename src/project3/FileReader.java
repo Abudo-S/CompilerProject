@@ -5,23 +5,34 @@
  */
 package project3;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  *
  * @author Dell
  */
-public class FileReader {  //assigned to karim
-    
-    private static String text;
-    
-    public FileReader(){
+public class FileReader {  
+	private String Text;
+	
+	public String getText() {
+		return Text;
+	}
+
+	public void setText(String text) {
+		Text = text;
+	}
+	
+	public FileReader(){
         
     }
     
-    public void read(){
-         //fill string text
-    }
-    
-    public String get_text(){
-        return "";
+    public void read(String FilePath) throws FileNotFoundException{
+    	File file = new File(FilePath); 
+    	Scanner sc = new Scanner(file); 
+    	
+    	
+    	sc.close();
     }
 }
