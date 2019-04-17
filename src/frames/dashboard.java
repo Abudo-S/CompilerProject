@@ -189,7 +189,32 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     }//GEN-LAST:event_parseActionPerformed
 
     private void browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseActionPerformed
-        // TODO add your handling code here:
+    	JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Text/java files", "txt","java");
+		chooser.setFileFilter(filter);
+		int returnValue = chooser.showOpenDialog(null);
+		try{
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+    			FileReader fr = new FileReader(chooser.getSelectedFile());
+    			Scanner sc = new Scanner(chooser.getSelectedFile());
+    			if (sc != null) {
+    				char[] code = new char[sc.nextLine().length()]; 
+    				fr.read(code);
+    				preprocessing pre = new preprocessing(code);
+    				String[] st = pre.Processing();
+    				System.out.println(st);
+    				if (st != null) {
+        		    	//Output.messages=Arrays.asList(st);
+        		    	//out.setVisible(true);
+					}
+				}
+    		}
+		}catch(FileNotFoundException ex){
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_browseActionPerformed
 
     /**
