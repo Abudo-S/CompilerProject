@@ -5,6 +5,7 @@
  */
 package project3;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -19,10 +20,11 @@ public class Project3 {
     public static void main(String[] args) { //test here
         // TODO code application logic here
         stack st=new stack();
-        st.push(1);
+        //st.push(1);
         st.push("vhghg");
        // System.out.println(st.pop());
-       char[]x={'@',' ','T','y','p','e',' ','h',' ','I','p','o','k',' '};
+       //char[]x={'I','f',' ','(',' ','x',' ','<','=',' ','S',' ',')',' '};
+       char[] x={'@',' ','{',' ','s','a',' ','w','s',' ','}'};
         scanner sc=new scanner(x);
         //System.out.println(scanner.text);
         token tok=new token(); 

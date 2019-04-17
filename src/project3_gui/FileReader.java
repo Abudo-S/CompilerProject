@@ -11,7 +11,7 @@ package project3_gui;
  */
 public class FileReader {  //assigned to karim
     
-    private static char[] text;
+    private char[] text;
     
     public FileReader(){
         
@@ -23,5 +23,6 @@ public class FileReader {  //assigned to karim
     
     public char[] get_text(){
         return this.text;
+//>>>>>>> cdb77b73f578e6ba3239697ef3265791a3d5fb4d:src/project3_gui/FileReader.java
     }
 }

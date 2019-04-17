@@ -19,6 +19,7 @@ public class scanner {
     private token tok;
     private chars operation;
     private static int errors;
+    private static int error_lines[];
    // private String[] IDs;
    // private int count_IDs;
     
@@ -30,6 +31,7 @@ public class scanner {
      //  this.IDs=new String[100];
      //  this.count_IDs=0;
        msg=new String[500];
+       scanner.error_lines=new int[500];
     }
     
        public char[] gettext() {
@@ -42,6 +44,10 @@ public class scanner {
        
        public int get_errors(){
            return errors;
+       }
+       
+       public int[] get_error_lines(){
+           return scanner.error_lines;
        }
 
     public boolean match(char[] str) {
@@ -440,9 +446,9 @@ public class scanner {
             case '-':
                     if(str[index+1]=='>'){
                          index++;
-                         tok.add_token("Arithmetic Operation");
-                    }else
                          tok.add_token("Access Operator");
+                    }else
+                         tok.add_token("Arithmetic Operation");
                     break;
             case '&':
                     if(str[index+1]=='&'){
@@ -494,8 +500,13 @@ public class scanner {
             case ',':
             case '\'':    
                     tok.add_token("Quotation Mark");
-                    break;      
-                    
+                    break; 
+            case '(':
+                    tok.add_token("(");
+                    break; 
+            case ')':    
+                    tok.add_token(")");
+                    break; 
             default:
                     int i=match_number(str, index);
                     if(i==index){
@@ -554,14 +565,14 @@ public class scanner {
     }
     
      public int match_ID(char[] ch,int i){
-        String str="";
+        //String str="";
         int index=i;
         if(ch[i]==' '){
             i++;
         }
         if((ch[i]>='a'&&ch[i]<='z')||(ch[i]>='A'&&ch[i]<='Z')){
             for(int j=i;j<ch.length;j++){
-                str+=ch[i];
+                //str+=ch[i];
                 if(ch[j]==' '||ch[j]=='('||ch[j]=='{'){
                     //this.IDs[this.count_IDs++]=str;
                     index=j;
@@ -591,11 +602,13 @@ public class scanner {
                         msg[tok.size()-1]="Line#: "+line+" Token Text: "+this.operation.convert_to_String(word)+" Token Type: "+tok.get_token();
                     }else{
                         msg[tok.size()-1]="Line#: "+line+"Error in Token Text: "+this.operation.convert_to_String(word);
-                        scanner.errors++;
+                        scanner.error_lines[scanner.errors]=line;
+                        scanner.errors++; //to get Total Number of errors
                     }
                     counter=0;
                     word=new char[50];
                 }
+                System.out.println(word[i]);
             }
         }catch(Exception e){
             System.out.println(e);

@@ -5,17 +5,58 @@
  */
 package frames;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import project3.scanner;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
+import project3.chars;
+import project3.preprocessing;
+import project3.scanner;
+
+import java.io.*;
+import java.util.List;
 /**
  *
  * @author Dell
  */
-public class dashboard extends javax.swing.JFrame {
+public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     /**
      * Creates new form dashboard
      */
-    public dashboard() {
-        initComponents();
+    public Set<String> keywords=new HashSet<>();
+   // public List<String>messages=new ArrayList<String>();
+    private ArrayList<Integer> error_lines;
+    AutoComplete auto ;
+    Pattern pt=Pattern.compile("([a-zA-Z]([a-zA-Z]|[1-9])*)");
+    Matcher m;  
+    Output out;
+    public dashboard() {       
+        initComponents();  
+        this.error_lines=new ArrayList<>();
+        out=new Output();
     }
 
     /**
@@ -38,10 +79,24 @@ public class dashboard extends javax.swing.JFrame {
         setBackground(new java.awt.Color(50, 63, 65));
 
         browse.setText("Browse");
+        browse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseActionPerformed(evt);
+            }
+        });
 
-        editor.setBackground(new java.awt.Color(125, 140, 130));
+        editor.setBackground(new java.awt.Color(51, 51, 51));
         editor.setColumns(20);
+        editor.setForeground(new java.awt.Color(250, 250, 250));
         editor.setRows(5);
+        editor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                editorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editorKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(editor);
 
         scan.setText("Scan");
@@ -52,6 +107,11 @@ public class dashboard extends javax.swing.JFrame {
         });
 
         parse.setText("Parse");
+        parse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parseActionPerformed(evt);
+            }
+        });
 
         compile.setText("Compile");
 
@@ -93,7 +153,72 @@ public class dashboard extends javax.swing.JFrame {
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
         // TODO add your handling code here:
+        //We need to fill the ArrayList first------------------
+       
+    	this.editor.setEditable(false);
+    	char[] c = new char[this.editor.getText().toCharArray().length];
+    	c = this.editor.getText().toCharArray();
+    	preprocessing pre=new preprocessing(c);
+    	String[] st = pre.Processing();
+        this.out.add_to_output(st);
+    	out.setVisible(true);
     }//GEN-LAST:event_scanActionPerformed
+
+    private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_editorKeyTyped
+
+    private void editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyPressed
+        // TODO add your handling code here:
+          
+        //System.out.println(evt.getKeyCode());
+        if(evt.getKeyCode()==17){ //Ctrl KeyCode
+            m=pt.matcher(editor.getText());
+            while (m.find( )) {
+               String keyword= m.group(0);
+              if(!keyword.equals("Ipok")&&!keyword.equals("Sipok")&&!keyword.equals("Ipokf")&&!keyword.equals("Sipokf")&&!keyword.equals("Craf")&&!keyword.equals("Valueless")&&!keyword.equals("Sequence")&&!keyword.equals("Rational"))
+               keywords.add(keyword);   
+            }
+            if(auto!=null){
+                auto.setVisible(false);
+            }
+            auto=new AutoComplete(this);
+            auto.setVisible(true);
+        }
+    }//GEN-LAST:event_editorKeyPressed
+
+    private void parseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_parseActionPerformed
+
+    private void browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseActionPerformed
+    	JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Text/java files", "txt","java");
+		chooser.setFileFilter(filter);
+		int returnValue = chooser.showOpenDialog(null);
+		try{
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+    			FileReader fr = new FileReader(chooser.getSelectedFile());
+    			Scanner sc = new Scanner(chooser.getSelectedFile());
+    			if (sc != null) {
+    				char[] code = new char[sc.nextLine().length()+1]; 
+    				fr.read(code);
+    				code[code.length - 1] = '.';
+    				preprocessing pre = new preprocessing(code);
+    				String[] st = pre.Processing();
+    				this.out.add_to_output(st);
+    		    	out.setVisible(true);
+
+				}
+    		}
+		}catch(FileNotFoundException ex){
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_browseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +254,14 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void append_to_editor(String str){
+        this.editor.append(" "+str);
+    }
+    
+    public void error_marker(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browse;
@@ -138,4 +271,31 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JButton parse;
     private javax.swing.JButton scan;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    public void paint( Graphics g){
+        try{
+            g.setColor(Color.RED);
+            for (Integer error_line : this.error_lines) {
+                 g.drawString("Error->", 10,error_line*2);
+            }
+        }catch(Exception e){
+            System.out.println(e+" paint");
+        }
+    }
 }
