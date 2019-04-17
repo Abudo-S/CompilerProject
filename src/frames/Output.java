@@ -5,6 +5,9 @@
  */
 package frames;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Dell
@@ -14,8 +17,12 @@ public class Output extends javax.swing.JFrame {
     /**
      * Creates new form Output
      */
+	public static List<String>messages=new ArrayList<String>();
     public Output() {
         initComponents();
+        for(String msg:messages){
+        	this.MessageOutput.append(msg);
+        }
     }
 
     /**
@@ -28,15 +35,15 @@ public class Output extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        MessageOutput = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(125, 140, 130));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        MessageOutput.setEditable(false);
+        MessageOutput.setBackground(new java.awt.Color(125, 140, 130));
+        MessageOutput.setColumns(20);
+        MessageOutput.setRows(5);
+        jScrollPane1.setViewportView(MessageOutput);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +98,6 @@ public class Output extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea MessageOutput;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,40 +5,13 @@
  */
 package project3_gui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
  *
  * @author Dell
  */
-<<<<<<< HEAD:src/project3/FileReader.java
-public class FileReader {  
-	private String Text;
-	
-	public String getText() {
-		return Text;
-	}
-
-	public void setText(String text) {
-		Text = text;
-	}
-	
-	public FileReader(){
-        
-    }
-    
-    public void read(String FilePath) throws FileNotFoundException{
-    	File file = new File(FilePath); 
-    	Scanner sc = new Scanner(file); 
-    	
-    	
-    	sc.close();
-=======
 public class FileReader {  //assigned to karim
     
-    private static char[] text;
+    private char[] text;
     
     public FileReader(){
         
@@ -50,6 +23,6 @@ public class FileReader {  //assigned to karim
     
     public char[] get_text(){
         return this.text;
->>>>>>> cdb77b73f578e6ba3239697ef3265791a3d5fb4d:src/project3_gui/FileReader.java
+//>>>>>>> cdb77b73f578e6ba3239697ef3265791a3d5fb4d:src/project3_gui/FileReader.java
     }
 }
