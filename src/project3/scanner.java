@@ -440,9 +440,9 @@ public class scanner {
             case '-':
                     if(str[index+1]=='>'){
                          index++;
-                         tok.add_token("Arithmetic Operation");
-                    }else
                          tok.add_token("Access Operator");
+                    }else
+                         tok.add_token("Arithmetic Operation");
                     break;
             case '&':
                     if(str[index+1]=='&'){
@@ -494,8 +494,13 @@ public class scanner {
             case ',':
             case '\'':    
                     tok.add_token("Quotation Mark");
-                    break;      
-                    
+                    break; 
+            case '(':
+                    tok.add_token("(");
+                    break; 
+            case ')':    
+                    tok.add_token(")");
+                    break; 
             default:
                     int i=match_number(str, index);
                     if(i==index){

@@ -5,17 +5,31 @@
  */
 package frames;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Dell
  */
-public class dashboard extends javax.swing.JFrame {
+public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     /**
      * Creates new form dashboard
      */
+    public Set<String> keywords=new HashSet<>();
+    AutoComplete auto ;
+    Pattern pt=Pattern.compile("([a-zA-Z][^\\[|(|{|\\s]*)");
+    Matcher m;
     public dashboard() {
-        initComponents();
+        initComponents();  
     }
 
     /**
@@ -42,6 +56,14 @@ public class dashboard extends javax.swing.JFrame {
         editor.setBackground(new java.awt.Color(125, 140, 130));
         editor.setColumns(20);
         editor.setRows(5);
+        editor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                editorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editorKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(editor);
 
         scan.setText("Scan");
@@ -95,6 +117,36 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_scanActionPerformed
 
+    private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_editorKeyTyped
+
+    private void editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyPressed
+        // TODO add your handling code here:
+        int c=0;  
+        //System.out.println(evt.getKeyCode());
+        if(evt.getKeyCode()==17){ //Ctrl KeyCode
+            m=pt.matcher(editor.getText());
+            while (m.find( )) {
+               String keyword= m.group(0);
+              if(!keyword.equals("Ipok")&&!keyword.equals("Sipok")&&!keyword.equals("Ipokf")&&!keyword.equals("Sipokf")&&!keyword.equals("Craf")&&!keyword.equals("Valueless")&&!keyword.equals("Sequence")&&!keyword.equals("Rational"))
+               keywords.add(keyword);   
+            }
+            if(auto!=null){
+                auto.setVisible(false);
+            }
+            auto=new AutoComplete(this);
+            auto.setVisible(true);
+        }if(evt.getKeyCode()==8){
+            c++;
+        }
+        if(c==5){
+            System.out.println(c);
+            keywords=new HashSet<>();
+        }
+    }//GEN-LAST:event_editorKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -129,6 +181,10 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void append_to_editor(String str){
+        this.editor.append(" "+str);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browse;
@@ -138,4 +194,19 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JButton parse;
     private javax.swing.JButton scan;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

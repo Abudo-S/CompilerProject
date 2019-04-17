@@ -22,7 +22,7 @@ public class Project3 {
         st.push(1);
         st.push("vhghg");
        // System.out.println(st.pop());
-       char[]x={'@',' ','T','y','p','e',' ','h',' ','I','p','o','k',' '};
+       char[]x={'i','f',' ','(',' ','x',' ','<','=',' ','S',' ',')',' '};
         scanner sc=new scanner(x);
         //System.out.println(scanner.text);
         token tok=new token(); 
