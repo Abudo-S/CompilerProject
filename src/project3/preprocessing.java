@@ -31,19 +31,20 @@ public class preprocessing {
 	 * @return array after preprocessing 
 	 */
 	public String[] Processing(){
-            try{
+            
             System.out.println("comming");
             System.out.println(this.Code);
 		int startIndex;
 		int endIndex;
+		try{
 		if (this.Code.length > 0) {
 			int ArrayLength= this.Code.length;
-			for (int i = 0;i<ArrayLength || this.Code[i] != '#' || this.Code[i] != '$'; i++) {
+			for (int i = 0;i<ArrayLength; i++) {
 				if (this.Code[i] == '@'|| this.Code[i] == '^') {
-					for (int j = i+1;j<Code.length; j++) {
+					for (int j = i+1;j< ArrayLength ; j++) {
 						if (this.Code[j] == '*' && this.Code[j+1] == '*' && this.Code[j+2] == '*') {
 							startIndex = j;
-							for(int x = j;x < this.Code.length; x++){
+							for(int x = j;x < ArrayLength; x++){
 								if(this.Code[x] == '\n'){
 									endIndex = x;
 									removeFromArray(startIndex, endIndex);
@@ -65,16 +66,17 @@ public class preprocessing {
 						} else if (this.Code[j] == '/' && this.Code[j+1] == '$') {
 							removeFromArray(j, getCommentIndex(j+1));
 							ArrayLength = this.Code.length;
-                                                        j=j-1;
+                            j=j-1;
 						}
 					}
 					break;
 				}
 			}
 		}
+				removeFromArray(this.Code.length-1, 0);
                 System.out.println("returned");
                 System.out.println(this.Code);
-		scanner sc=new scanner(this.Code);
+                scanner sc=new scanner(this.Code);
                 this.Code = null;
 		return sc.apply_matching();
             }catch(Exception e){

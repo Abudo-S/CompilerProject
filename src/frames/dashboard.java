@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import project3.scanner;
 
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import project3.chars;
 import project3.preprocessing;
 import project3.scanner;
 
@@ -153,7 +155,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         //We need to fill the ArrayList first------------------
        
     	this.editor.setEditable(false);
-    	preprocessing pre=new preprocessing( this.editor.getText().toCharArray());
+    	char[] c = new char[this.editor.getText().toCharArray().length + 1];
+    	c = this.editor.getText().toCharArray();
+    	c[c.length - 1]='.';
+    	preprocessing pre=new preprocessing(c);
     	String[] st = pre.Processing();
     	//messages=Arrays.asList(st);
         this.out.add_to_output(st);
@@ -198,8 +203,9 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     			FileReader fr = new FileReader(chooser.getSelectedFile());
     			Scanner sc = new Scanner(chooser.getSelectedFile());
     			if (sc != null) {
-    				char[] code = new char[sc.nextLine().length()]; 
+    				char[] code = new char[sc.nextLine().length()+1]; 
     				fr.read(code);
+    				code[code.length - 1] = '.';
     				preprocessing pre = new preprocessing(code);
     				String[] st = pre.Processing();
     				System.out.println(st);
