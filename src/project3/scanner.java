@@ -565,14 +565,14 @@ public class scanner {
     }
     
      public int match_ID(char[] ch,int i){
-        String str="";
+        //String str="";
         int index=i;
         if(ch[i]==' '){
             i++;
         }
         if((ch[i]>='a'&&ch[i]<='z')||(ch[i]>='A'&&ch[i]<='Z')){
             for(int j=i;j<ch.length;j++){
-                str+=ch[i];
+                //str+=ch[i];
                 if(ch[j]==' '||ch[j]=='('||ch[j]=='{'){
                     //this.IDs[this.count_IDs++]=str;
                     index=j;
