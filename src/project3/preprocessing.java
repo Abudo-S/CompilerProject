@@ -36,12 +36,16 @@ public class preprocessing {
             System.out.println(this.Code);
 		int startIndex;
 		int endIndex;
+		boolean checkStartIndex = false;
+		boolean checkEndIndex = false;
 		try{
 		if (this.Code.length > 0) {
 			int ArrayLength= this.Code.length;
 			for (int i = 0;i<ArrayLength; i++) {
 				if (this.Code[i] == '@'|| this.Code[i] == '^') {
+					checkStartIndex = true;
 					for (int j = i+1;j< ArrayLength ; j++) {
+						//if((this.Code[j] == '#' || this.Code[j] == '$') && this.Code[j-1] == '/')
 						if (this.Code[j] == '*' && this.Code[j+1] == '*' && this.Code[j+2] == '*') {
 							startIndex = j;
 							for(int x = j;x < ArrayLength; x++){
@@ -64,7 +68,7 @@ public class preprocessing {
 							ArrayLength = this.Code.length;
 							j=startIndex-1;
 						} else if (this.Code[j] == '/' && this.Code[j+1] == '$') {
-							removeFromArray(j, getCommentIndex(j+1));
+							removeFromArray(j, getCommentIndex(j+2));
 							ArrayLength = this.Code.length;
                             j=j-1;
 						}
