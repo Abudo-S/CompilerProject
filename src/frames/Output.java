@@ -17,12 +17,9 @@ public class Output extends javax.swing.JFrame {
     /**
      * Creates new form Output
      */
-	public static List<String>messages=new ArrayList<String>();
+
     public Output() {
         initComponents();
-        for(String msg:messages){
-        	this.MessageOutput.append(msg);
-        }
     }
 
     /**
@@ -94,6 +91,15 @@ public class Output extends javax.swing.JFrame {
                 new Output().setVisible(true);
             }
         });
+    }
+    
+    //public void add_to_output(List<String> st){
+    public void add_to_output(String[] st){
+        for(String str:st){
+            if(str!=null){
+                this.MessageOutput.append(str+"\n");
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

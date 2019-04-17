@@ -31,6 +31,8 @@ public class preprocessing {
 	 * @return array after preprocessing 
 	 */
 	public String[] Processing(){
+            System.out.println("comming");
+            System.out.println(this.Code);
 		int startIndex;
 		int endIndex;
 		if (this.Code.length > 0) {
@@ -53,24 +55,26 @@ public class preprocessing {
 							startIndex = j;
 							removeFromArray(startIndex,0);
 							ArrayLength = this.Code.length;
-							j=startIndex;
-						} else if(this.Code[j] == '\f' && this.Code[j+1] == '\f' || this.Code[j] == '\t' && this.Code[j+1] == '\t'){
+							j=startIndex-1;
+						} else if(this.Code[j] == ' ' && this.Code[j+1] == ' ' || this.Code[j] == '\t' && this.Code[j+1] == '\t'){
 							startIndex = j;
 							removeFromArray(startIndex,0);
 							ArrayLength = this.Code.length;
-							j=startIndex;
+							j=startIndex-1;
 						} else if (this.Code[j] == '/' && this.Code[j+1] == '$') {
-							removeFromArray(j+1, getCommentIndex(j+1));
+							removeFromArray(j, getCommentIndex(j+1));
 							ArrayLength = this.Code.length;
+                                                        j=j-1;
 						}
 					}
 					break;
 				}
 			}
 		}
-		char[] returnedCode = this.Code;
-		this.Code = new char[0];
-		scanner sc=new scanner(returnedCode);
+                System.out.println("returned");
+                System.out.println(this.Code);
+		scanner sc=new scanner(this.Code);
+                this.Code = null;
 		return sc.apply_matching();
 	}
 	

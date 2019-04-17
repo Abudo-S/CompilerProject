@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package frames;
-<<<<<<< HEAD
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,7 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import project3.scanner;
 
-=======
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -36,7 +34,7 @@ import project3.preprocessing;
 import project3.scanner;
 
 import java.io.*;
->>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
+import java.util.List;
 /**
  *
  * @author Dell
@@ -46,22 +44,17 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     /**
      * Creates new form dashboard
      */
-<<<<<<< HEAD
     public Set<String> keywords=new HashSet<>();
+   // public List<String>messages=new ArrayList<String>();
     private ArrayList<Integer> error_lines;
     AutoComplete auto ;
-    Pattern pt=Pattern.compile("([a-zA-Z][^\\[|(|{|\\s]*)");
+    Pattern pt=Pattern.compile("([a-zA-Z]([a-zA-Z]|[1-9])*)");
     Matcher m;  
-    
+    Output out;
     public dashboard() {       
         initComponents();  
         this.error_lines=new ArrayList<>();
-=======
-	Output out;
-    public dashboard() {
-        initComponents();
         out=new Output();
->>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
     }
 
     /**
@@ -74,39 +67,6 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     private void initComponents() {
 
         browse = new javax.swing.JButton();
-        browse.addActionListener(new ActionListener() {
-        	
-        	public void actionPerformed(ActionEvent arg0) {
-        		
-        		JFileChooser chooser = new JFileChooser();
-        		FileNameExtensionFilter filter = new FileNameExtensionFilter("Text/java files", "txt","java");
-        		chooser.setFileFilter(filter);
-        		int returnValue = chooser.showOpenDialog(null);
-        		try{
-        			if (returnValue == JFileChooser.APPROVE_OPTION) {
-            			FileReader fr = new FileReader(chooser.getSelectedFile());
-            			Scanner sc = new Scanner(chooser.getSelectedFile());
-            			if (sc != null) {
-            				char[] code = new char[sc.nextLine().length()]; 
-            				fr.read(code);
-            				preprocessing pre = new preprocessing(code);
-            				String[] st = pre.Processing();
-            				System.out.println(st);
-            				if (st != null) {
-                		    	Output.messages=Arrays.asList(st);
-                		    	out.setVisible(true);
-							}
-						}
-            		}
-        		}catch(FileNotFoundException ex){
-        			
-        		} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        		
-        	}
-        });
         jScrollPane1 = new javax.swing.JScrollPane();
         editor = new javax.swing.JTextArea();
         scan = new javax.swing.JButton();
@@ -117,8 +77,13 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         setBackground(new java.awt.Color(50, 63, 65));
 
         browse.setText("Browse");
+        browse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseActionPerformed(evt);
+            }
+        });
 
-        editor.setBackground(new java.awt.Color(125, 140, 130));
+        editor.setBackground(new java.awt.Color(100, 100, 90));
         editor.setColumns(20);
         editor.setRows(5);
         editor.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -185,18 +150,14 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
         //We need to fill the ArrayList first------------------
-  
        
-        
-=======
     	this.editor.setEditable(false);
     	preprocessing pre=new preprocessing( this.editor.getText().toCharArray());
     	String[] st = pre.Processing();
-    	Output.messages=Arrays.asList(st);
+    	//messages=Arrays.asList(st);
+        this.out.add_to_output(st);
     	out.setVisible(true);
->>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
     }//GEN-LAST:event_scanActionPerformed
 
     private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
@@ -226,6 +187,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     private void parseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_parseActionPerformed
+
+    private void browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browseActionPerformed
 
     /**
      * @param args the command line arguments
