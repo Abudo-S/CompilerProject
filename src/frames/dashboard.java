@@ -155,12 +155,11 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         //We need to fill the ArrayList first------------------
        
     	this.editor.setEditable(false);
-    	char[] c = new char[this.editor.getText().toCharArray().length + 1];
+    	char[] c = new char[this.editor.getText().toCharArray().length + 2];
     	c = this.editor.getText().toCharArray();
     	c[c.length - 1]='.';
     	preprocessing pre=new preprocessing(c);
     	String[] st = pre.Processing();
-    	//messages=Arrays.asList(st);
         this.out.add_to_output(st);
     	out.setVisible(true);
     }//GEN-LAST:event_scanActionPerformed
@@ -208,11 +207,9 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     				code[code.length - 1] = '.';
     				preprocessing pre = new preprocessing(code);
     				String[] st = pre.Processing();
-    				System.out.println(st);
-    				if (st != null) {
-        		    	//Output.messages=Arrays.asList(st);
-        		    	//out.setVisible(true);
-					}
+    				this.out.add_to_output(st);
+    		    	out.setVisible(true);
+
 				}
     		}
 		}catch(FileNotFoundException ex){
