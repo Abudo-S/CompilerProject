@@ -37,8 +37,9 @@ public class Output extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MessageOutput.setEditable(false);
-        MessageOutput.setBackground(new java.awt.Color(125, 140, 130));
+        MessageOutput.setBackground(new java.awt.Color(52, 152, 219));
         MessageOutput.setColumns(20);
+        MessageOutput.setForeground(new java.awt.Color(255, 255, 255));
         MessageOutput.setRows(5);
         jScrollPane1.setViewportView(MessageOutput);
 
@@ -103,7 +104,7 @@ public class Output extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea MessageOutput;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

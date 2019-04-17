@@ -84,7 +84,7 @@ public class preprocessing {
                 this.Code = null;
 		return sc.apply_matching();
             }catch(Exception e){
-                System.out.println(e);
+               
             }
             return new String[5];
 	}
