@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package frames;
+<<<<<<< HEAD
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,6 +19,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import project3.scanner;
 
+=======
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
+import project3.preprocessing;
+import project3.scanner;
+
+import java.io.*;
+>>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
 /**
  *
  * @author Dell
@@ -27,6 +46,7 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     /**
      * Creates new form dashboard
      */
+<<<<<<< HEAD
     public Set<String> keywords=new HashSet<>();
     private ArrayList<Integer> error_lines;
     AutoComplete auto ;
@@ -36,6 +56,12 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     public dashboard() {       
         initComponents();  
         this.error_lines=new ArrayList<>();
+=======
+	Output out;
+    public dashboard() {
+        initComponents();
+        out=new Output();
+>>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
     }
 
     /**
@@ -48,6 +74,39 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     private void initComponents() {
 
         browse = new javax.swing.JButton();
+        browse.addActionListener(new ActionListener() {
+        	
+        	public void actionPerformed(ActionEvent arg0) {
+        		
+        		JFileChooser chooser = new JFileChooser();
+        		FileNameExtensionFilter filter = new FileNameExtensionFilter("Text/java files", "txt","java");
+        		chooser.setFileFilter(filter);
+        		int returnValue = chooser.showOpenDialog(null);
+        		try{
+        			if (returnValue == JFileChooser.APPROVE_OPTION) {
+            			FileReader fr = new FileReader(chooser.getSelectedFile());
+            			Scanner sc = new Scanner(chooser.getSelectedFile());
+            			if (sc != null) {
+            				char[] code = new char[sc.nextLine().length()]; 
+            				fr.read(code);
+            				preprocessing pre = new preprocessing(code);
+            				String[] st = pre.Processing();
+            				System.out.println(st);
+            				if (st != null) {
+                		    	Output.messages=Arrays.asList(st);
+                		    	out.setVisible(true);
+							}
+						}
+            		}
+        		}catch(FileNotFoundException ex){
+        			
+        		} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		
+        	}
+        });
         jScrollPane1 = new javax.swing.JScrollPane();
         editor = new javax.swing.JTextArea();
         scan = new javax.swing.JButton();
@@ -126,10 +185,18 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         //We need to fill the ArrayList first------------------
   
        
         
+=======
+    	this.editor.setEditable(false);
+    	preprocessing pre=new preprocessing( this.editor.getText().toCharArray());
+    	String[] st = pre.Processing();
+    	Output.messages=Arrays.asList(st);
+    	out.setVisible(true);
+>>>>>>> 4d2cb1175c0c661b789e33489d4204316be6fb18
     }//GEN-LAST:event_scanActionPerformed
 
     private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
