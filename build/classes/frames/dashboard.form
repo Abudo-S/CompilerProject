@@ -101,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Parse"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="parseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="compile">
       <Properties>

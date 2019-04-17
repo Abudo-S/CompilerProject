@@ -19,6 +19,7 @@ public class scanner {
     private token tok;
     private chars operation;
     private static int errors;
+    private static int error_lines[];
    // private String[] IDs;
    // private int count_IDs;
     
@@ -30,6 +31,7 @@ public class scanner {
      //  this.IDs=new String[100];
      //  this.count_IDs=0;
        msg=new String[500];
+       scanner.error_lines=new int[500];
     }
     
        public char[] gettext() {
@@ -42,6 +44,10 @@ public class scanner {
        
        public int get_errors(){
            return errors;
+       }
+       
+       public int[] get_error_lines(){
+           return scanner.error_lines;
        }
 
     public boolean match(char[] str) {
@@ -596,7 +602,8 @@ public class scanner {
                         msg[tok.size()-1]="Line#: "+line+" Token Text: "+this.operation.convert_to_String(word)+" Token Type: "+tok.get_token();
                     }else{
                         msg[tok.size()-1]="Line#: "+line+"Error in Token Text: "+this.operation.convert_to_String(word);
-                        scanner.errors++;
+                        scanner.error_lines[scanner.errors]=line;
+                        scanner.errors++; //to get Total Number of errors
                     }
                     counter=0;
                     word=new char[50];

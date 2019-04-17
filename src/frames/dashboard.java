@@ -5,6 +5,8 @@
  */
 package frames;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
@@ -14,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import project3.scanner;
 
 /**
  *
@@ -25,11 +28,14 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
      * Creates new form dashboard
      */
     public Set<String> keywords=new HashSet<>();
+    private ArrayList<Integer> error_lines;
     AutoComplete auto ;
     Pattern pt=Pattern.compile("([a-zA-Z][^\\[|(|{|\\s]*)");
-    Matcher m;
-    public dashboard() {
+    Matcher m;  
+    
+    public dashboard() {       
         initComponents();  
+        this.error_lines=new ArrayList<>();
     }
 
     /**
@@ -74,6 +80,11 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         });
 
         parse.setText("Parse");
+        parse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parseActionPerformed(evt);
+            }
+        });
 
         compile.setText("Compile");
 
@@ -115,6 +126,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
         // TODO add your handling code here:
+        //We need to fill the ArrayList first------------------
+  
+       
+        
     }//GEN-LAST:event_scanActionPerformed
 
     private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
@@ -124,7 +139,7 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     private void editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyPressed
         // TODO add your handling code here:
-        int c=0;  
+          
         //System.out.println(evt.getKeyCode());
         if(evt.getKeyCode()==17){ //Ctrl KeyCode
             m=pt.matcher(editor.getText());
@@ -138,14 +153,12 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
             }
             auto=new AutoComplete(this);
             auto.setVisible(true);
-        }if(evt.getKeyCode()==8){
-            c++;
-        }
-        if(c==5){
-            System.out.println(c);
-            keywords=new HashSet<>();
         }
     }//GEN-LAST:event_editorKeyPressed
+
+    private void parseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_parseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +198,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     public void append_to_editor(String str){
         this.editor.append(" "+str);
     }
+    
+    public void error_marker(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browse;
@@ -208,5 +225,17 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    public void paint( Graphics g){
+        try{
+            g.setColor(Color.RED);
+            for (Integer error_line : this.error_lines) {
+                 g.drawString("Error->", 10,error_line*2);
+            }
+        }catch(Exception e){
+            System.out.println(e+" paint");
+        }
     }
 }
