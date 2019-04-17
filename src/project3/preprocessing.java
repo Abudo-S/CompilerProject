@@ -31,6 +31,7 @@ public class preprocessing {
 	 * @return array after preprocessing 
 	 */
 	public String[] Processing(){
+            try{
             System.out.println("comming");
             System.out.println(this.Code);
 		int startIndex;
@@ -76,6 +77,10 @@ public class preprocessing {
 		scanner sc=new scanner(this.Code);
                 this.Code = null;
 		return sc.apply_matching();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            return new String[5];
 	}
 	
 	
