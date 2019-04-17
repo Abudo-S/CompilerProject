@@ -83,8 +83,9 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
             }
         });
 
-        editor.setBackground(new java.awt.Color(100, 100, 90));
+        editor.setBackground(new java.awt.Color(51, 51, 51));
         editor.setColumns(20);
+        editor.setForeground(new java.awt.Color(250, 250, 250));
         editor.setRows(5);
         editor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

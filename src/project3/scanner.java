@@ -608,6 +608,7 @@ public class scanner {
                     counter=0;
                     word=new char[50];
                 }
+                System.out.println(word[i]);
             }
         }catch(Exception e){
             System.out.println(e);
