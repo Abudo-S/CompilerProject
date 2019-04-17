@@ -156,9 +156,8 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         //We need to fill the ArrayList first------------------
        
     	this.editor.setEditable(false);
-    	char[] c = new char[this.editor.getText().toCharArray().length + 2];
+    	char[] c = new char[this.editor.getText().toCharArray().length];
     	c = this.editor.getText().toCharArray();
-    	c[c.length - 1]='.';
     	preprocessing pre=new preprocessing(c);
     	String[] st = pre.Processing();
         this.out.add_to_output(st);
