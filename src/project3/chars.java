@@ -19,6 +19,10 @@ public class chars {
             if(ch[i]==' '){
                 break;
             }
+            /*if(ch[i]=='{'||ch[i]=='}'||ch[i]=='['||ch[i]==']'||ch[i]=='('||ch[i]==')'){
+                counter++;
+                 break;
+            }*/
             counter++;
         }
         return counter+1;
@@ -55,7 +59,9 @@ public class chars {
         public String convert_to_String(char[] ch){
         String str="";
         for(int i=0;i<ch.length;i++){
-            str=str+ch[i];
+            if(ch[i]!='\n'){
+                str=str+ch[i];
+            }
         }
         return str;
     }

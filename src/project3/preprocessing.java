@@ -6,6 +6,7 @@
 package project3;
 
 import com.sun.istack.internal.Nullable;
+import frames.dashboard;
 
 /**
  *
@@ -23,7 +24,7 @@ public class preprocessing {
 	private char[] Code;
 	private boolean checkStart = false;
 	private boolean checkEnd = false;
-	
+	//private static boolean from_file=false;
 	public preprocessing(char[] Code){
 		this.Code = Code;
 	}
@@ -32,7 +33,7 @@ public class preprocessing {
 	 * 
 	 * @return array after preprocessing 
 	 */
-	public String[] Processing(){
+	public String[] Processing(dashboard d){
 		this.checkEnd = false;
 		this.checkStart = false;
             System.out.println("comming");
@@ -81,7 +82,8 @@ public class preprocessing {
 				}else{
 					String[] mes = new String[1];
 					mes[0] = "you sould add start and end element";
-					
+                                            d.error_lines.add(1);
+                                            d.error_lines.add(34);
 					return mes;
 				}
 		
@@ -93,6 +95,7 @@ public class preprocessing {
                 //System.out.println(this.Code);
                 //System.out.println("end");
                 scanner sc=new scanner(this.Code);
+                d.set_error_lines(sc.get_error_lines());
                 this.Code = null;
     			this.checkEnd = false;
     			this.checkStart = false;
@@ -174,5 +177,9 @@ public class preprocessing {
 				break;
 		}
 	}
+        
+        /*public void set_from_file(){
+            this.from_file=true;
+        }*/
 	
 }

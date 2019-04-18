@@ -601,7 +601,7 @@ public class scanner {
                     if(bool){
                         msg[tok.size()-1]="Line#: "+line+" Token Text: "+this.operation.convert_to_String(word)+" Token Type: "+tok.get_token();
                     }else{
-                        msg[tok.size()-1]="Line#: "+line+"Error in Token Text: "+this.operation.convert_to_String(word);
+                        msg[tok.size()-1]="Line#: "+line+" Error in Token Text: "+this.operation.convert_to_String(word);
                         scanner.error_lines[scanner.errors]=line;
                         scanner.errors++; //to get Total Number of errors
                     }

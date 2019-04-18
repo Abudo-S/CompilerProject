@@ -47,6 +47,7 @@ public class AutoComplete extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.darkGray);
         setLocation(new java.awt.Point(0, 600));
+        setResizable(false);
 
         CompleteKeyword.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         CompleteKeyword.addKeyListener(new java.awt.event.KeyAdapter() {

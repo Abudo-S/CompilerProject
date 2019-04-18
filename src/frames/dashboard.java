@@ -48,7 +48,7 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
      */
     public Set<String> keywords=new HashSet<>();
    // public List<String>messages=new ArrayList<String>();
-    private ArrayList<Integer> error_lines;
+    public ArrayList<Integer> error_lines;
     AutoComplete auto ;
     Pattern pt=Pattern.compile("([a-zA-Z]([a-zA-Z]|[1-9])*)");
     Matcher m;  
@@ -58,7 +58,17 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         this.error_lines=new ArrayList<>();
         out=new Output();
     }
-
+   /* @Override
+      public void paint( Graphics g){
+          try{
+              g.setColor(Color.RED);
+              for (Integer error_line : this.error_lines) {
+                   g.drawString("Error->", 10,error_line*2);
+              }
+          }catch(Exception e){
+              System.out.println(e+" paint");
+          }
+      }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,9 +84,12 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         scan = new javax.swing.JButton();
         parse = new javax.swing.JButton();
         compile = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Errors = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(50, 63, 65));
+        setResizable(false);
 
         browse.setText("Browse");
         browse.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +128,15 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
         compile.setText("Compile");
 
+        jScrollPane2.setBackground(new java.awt.Color(51, 51, 51));
+
+        Errors.setEditable(false);
+        Errors.setBackground(new java.awt.Color(51, 51, 51));
+        Errors.setColumns(20);
+        Errors.setForeground(new java.awt.Color(255, 0, 0));
+        Errors.setRows(5);
+        jScrollPane2.setViewportView(Errors);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +148,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
                     .addComponent(parse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(browse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +169,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
 
         pack();
@@ -159,9 +186,10 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     	char[] c = new char[this.editor.getText().toCharArray().length];
     	c = this.editor.getText().toCharArray();
     	preprocessing pre=new preprocessing(c);
-    	String[] st = pre.Processing();
+    	String[] st = pre.Processing(this);
         this.out.add_to_output(st);
     	out.setVisible(true);
+        this.error_marker();
     }//GEN-LAST:event_scanActionPerformed
 
     private void editorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyTyped
@@ -171,13 +199,12 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
 
     private void editorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorKeyPressed
         // TODO add your handling code here:
-          
         //System.out.println(evt.getKeyCode());
         if(evt.getKeyCode()==17){ //Ctrl KeyCode
             m=pt.matcher(editor.getText());
             while (m.find( )) {
                String keyword= m.group(0);
-              if(!keyword.equals("Ipok")&&!keyword.equals("Sipok")&&!keyword.equals("Ipokf")&&!keyword.equals("Sipokf")&&!keyword.equals("Craf")&&!keyword.equals("Valueless")&&!keyword.equals("Sequence")&&!keyword.equals("Rational"))
+              if(!keyword.equals("Ipok")&&!keyword.equals("Sipok")&&!keyword.equals("Ipokf")&&!keyword.equals("Sipokf")&&!keyword.equals("Craf")&&!keyword.equals("Valueless")&&!keyword.equals("Sequence")&&!keyword.equals("Rational")&&!keyword.equals("Type"))
                keywords.add(keyword);   
             }
             if(auto!=null){
@@ -206,7 +233,7 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     				fr.read(code);
     				code[code.length - 1] = '.';
     				preprocessing pre = new preprocessing(code);
-    				String[] st = pre.Processing();
+    				String[] st = pre.Processing(this);
     				this.out.add_to_output(st);
     		    	out.setVisible(true);
 
@@ -260,14 +287,30 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
     }
     
     public void error_marker(){
-        
+       for(Integer i:this.error_lines){
+           for(int j=1;j<i;j++){
+               this.Errors.append("\n");
+           }
+           this.Errors.append("E");
+       }
+    }
+    
+    public void set_error_lines(int[] x){
+        for(int i=0;i<x.length;i++){
+            if(x[i]==0){
+                break;
+            }
+            this.error_lines.add(x[i]);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Errors;
     private javax.swing.JButton browse;
     private javax.swing.JButton compile;
     private javax.swing.JTextArea editor;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton parse;
     private javax.swing.JButton scan;
     // End of variables declaration//GEN-END:variables
@@ -287,15 +330,4 @@ public class dashboard extends javax.swing.JFrame implements KeyListener{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-     @Override
-    public void paint( Graphics g){
-        try{
-            g.setColor(Color.RED);
-            for (Integer error_line : this.error_lines) {
-                 g.drawString("Error->", 10,error_line*2);
-            }
-        }catch(Exception e){
-            System.out.println(e+" paint");
-        }
-    }
 }
