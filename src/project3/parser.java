@@ -12,12 +12,11 @@ package project3;
 //No built_in methods
 public class parser {
     private token tok;
-    private stack stk;
+    
     public parser(){
         tok=new token();
-        stk=new stack();
-        this.stk.fill_stack(tok);
     }
+    
     /*public void match_stmts(char[] ch){
         
          for(int i=0;i<ch.length;i++){
