@@ -40,4 +40,11 @@ public class stack {
     public int size(){
         return count+1;
     }
+    
+    public void fill_stack(token tok){
+        String[] tokens=tok.get_all_tokens();
+        for(int i=0;i<tok.size();i++){
+            this.push(tokens[i]);
+        }
+    }
 }

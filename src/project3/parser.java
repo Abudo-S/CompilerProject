@@ -12,11 +12,19 @@ package project3;
 //No built_in methods
 public class parser {
     private token tok;
-    
-    public parser(){
+    stack stk;
+    private char[] grammar;
+    public parser(char[] grammar){
         tok=new token();
+        this.stk=new stack();
+        this.stk.fill_stack(tok);
+        this.grammar=grammar;
     }
     
+    public boolean match(){
+        
+        return false;
+    }
     /*public void match_stmts(char[] ch){
         
          for(int i=0;i<ch.length;i++){

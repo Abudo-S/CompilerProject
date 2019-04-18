@@ -54,4 +54,8 @@ public class token {
         }
         return tokens[front];
     }
+    
+    public String[] get_all_tokens(){
+        return token.tokens;
+    }
 }
