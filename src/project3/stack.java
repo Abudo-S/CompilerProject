@@ -40,4 +40,10 @@ public class stack {
     public int size(){
         return count+1;
     }
+    
+    public void fill_stack(token tok){
+        for(int i=0;i<tok.size();i++){
+            
+        }
+    }
 }
