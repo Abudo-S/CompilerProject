@@ -558,8 +558,10 @@ public class scanner {
         while(ch[index]>='0'&&ch[index]<='9'){
             index++;
         }
-        if(index!=i){
+        if(index!=i&&ch[index]==' '&&ch[index]==';'){
             this.tok.add_token("Constant");
+        }else{
+            return i;
         }
         return index;
     }
